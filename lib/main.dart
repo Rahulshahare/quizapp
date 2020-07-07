@@ -63,20 +63,13 @@ class _QuizPageState extends State<QuizPage> {
     Question(q: 'Its Flutter', a: true)
   ];
 
-//  List<String> questions = [
-//    'This is Planet Earth',
-//    'We live above the sky',
-//    'Its after #2019',
-//  ];
-//
-//  List<bool> answeres = [true, false, true];
   int questionNumber = 0;
 
   Question q1 = Question(q:'This is Planet', a:true);
 
   void _nextQuestion(){
     setState(() {
-        if(questionNumber  <  questions.length - 1){
+        if(questionNumber  <  questionBank.length - 1){
           questionNumber = questionNumber + 1;
         }else{
           questionNumber = 0;
@@ -85,7 +78,7 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _updateScoor(bool userAnswere){
-    bool correctAnswere = answeres[questionNumber];
+    bool correctAnswere = questionBank[questionNumber].questionAnswere;
     setState(() {
       scoorKeeper.add(
         Icon(
@@ -111,7 +104,7 @@ class _QuizPageState extends State<QuizPage> {
                 padding: EdgeInsets.all(10.0),
                 alignment: Alignment.center,
                 child: Text(
-                    questions[questionNumber],
+                    questionBank[questionNumber].questionText,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
