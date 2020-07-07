@@ -2,7 +2,6 @@ import 'package:QuizApp/question.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'question.dart';
 import 'package:flutter/rendering.dart';
 
@@ -58,19 +57,24 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
 
   List<Icon> scoorKeeper = [];
-  List<Question> questionBank = [
-    Question(q:'This is Planet Earth', a: true),
-    Question(q: 'We live in water',a: false),
-    Question(q: 'Its Flutter', a: true),
-  ];
+//  List<Question> questionBank = [
+//    Question(q:'This is Planet Earth', a: true),
+//    Question(q: 'We live in water',a: false),
+//    Question(q: 'Its Flutter', a: true),
+//  ];
 
   int questionNumber = 0;
   bool isFinish = false;
 
-  Question q1 = Question(q:'This is Planet', a:true);
+  void _reset(){
+    setState(() {
+      questionNumber = 0;
+      isFinish = false;
+      scoorKeeper = [];
+    });
+  }
 
   void _nextQuestion(){
-
         if(questionNumber  <  questionBank.length - 1){
           setState(() {
             questionNumber = questionNumber + 1;
@@ -79,7 +83,6 @@ class _QuizPageState extends State<QuizPage> {
           isFinish = true;
           _showAlert();
         }
-
   }
 
   void _updateScoor(bool userAnswere){
@@ -99,22 +102,54 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _showAlert(){
-    Alert(
-      context: context,
-      type: AlertType.error,
-      title: "That's the last #Question",
-      desc: "HOPE YOU LOVE IT.",
-      buttons: [
-        DialogButton(
-          child: Text(
-            "LOVE IT",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () => Navigator.pop(context),
-          width: 120,
-        )
-      ],
-    ).show();
+    showDialog(
+      barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: Container(
+              height: 500,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  //crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/undraw_yoga.png", width: 200.0,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Hope you loved it',
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 320.0,
+                      child: FlatButton(
+                        onPressed: () {
+                          _reset();
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          "LOVE IT",
+                          style: TextStyle(color: Colors.white, letterSpacing: 2.0),
+                        ),
+                        color: CupertinoColors.black,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+
+
+
   }
 
   @override
