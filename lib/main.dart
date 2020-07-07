@@ -56,7 +56,22 @@ class _QuizPageState extends State<QuizPage> {
 
   List<Icon> scoorKeeper = [];
 
-  List<String> questions = [];
+  List<String> questions = [
+    'This is question one and this is extented question text',
+    'This is question two',
+    'This is question three'
+  ];
+  int questionNumber = 0;
+
+  void _nextQuestion(){
+    setState(() {
+        if(questionNumber  <  questions.length - 1){
+          questionNumber = questionNumber + 1;
+        }else{
+          questionNumber = 0;
+        }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +88,7 @@ class _QuizPageState extends State<QuizPage> {
                 padding: EdgeInsets.all(10.0),
                 alignment: Alignment.center,
                 child: Text(
-                    'Are we Learning Flutter?',
+                    questions[questionNumber],
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
@@ -99,6 +114,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
                 onPressed: (){
                   //DO on TRUE
+                  _nextQuestion();
                   setState(() {
                     scoorKeeper.add(
                       Icon(
@@ -128,6 +144,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
                 onPressed: (){
                   //DO on FALSE
+                  _nextQuestion();
                   setState(() {
                     scoorKeeper.add(
                       Icon(
