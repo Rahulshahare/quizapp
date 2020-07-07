@@ -63,44 +63,50 @@ class _QuizPageState extends State<QuizPage> {
                 //TODO: a true button
                 Expanded(
                   flex: 1,
-                  child: FlatButton(
-                    padding: EdgeInsets.all(0.0),
-                    textColor: Colors.white,
-                    color: Colors.lightGreen,
-                    child: Text('TRUE'),
-                    onPressed: (){
-                      //DO on TRUE
-                      setState(() {
-                        _trackers.add(
-                          Icon(
-                            Icons.check,
-                            color: Colors.green,
-                          ),
-                        );
-                      });
-                    },
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 4, 0, 2),
+                    child: FlatButton(
+                      padding: EdgeInsets.all(0.0),
+                      textColor: Colors.white,
+                      color: Colors.lightGreen,
+                      child: Text('TRUE'),
+                      onPressed: (){
+                        //DO on TRUE
+                        setState(() {
+                          _trackers.add(
+                            Icon(
+                              Icons.check,
+                              color: Colors.green,
+                            ),
+                          );
+                        });
+                      },
+                    ),
                   ),
                 ),
                 //TODO: a false button
                 Expanded(
                   flex: 1,
-                  child: FlatButton(
-                    padding: EdgeInsets.all(0.0),
-                    color: Colors.redAccent,
-                    textColor: Colors.white,
-                    child: Text('FALSE'),
-                    onPressed: (){
-                      //DO on FALSE
-                      setState(() {
-                        _trackers.add(
-                          Icon(
-                            Icons.close,
-                            color: Colors.red,
-                          ),
-                        );
-                      });
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 2, 0, 4),
+                    child: FlatButton(
+                      padding: EdgeInsets.all(0.0),
+                      color: Colors.redAccent,
+                      textColor: Colors.white,
+                      child: Text('FALSE'),
+                      onPressed: (){
+                        //DO on FALSE
+                        setState(() {
+                          _trackers.add(
+                            Icon(
+                              Icons.close,
+                              color: Colors.red,
+                            ),
+                          );
+                        });
 
-                    },
+                      },
+                    ),
                   ),
                 ),
                 Row(
