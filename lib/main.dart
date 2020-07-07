@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -33,9 +34,30 @@ class _QuizPageState extends State<QuizPage> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            //TODO : a box is require to show question
-            //TODO : a true button
-            //TODO : a false button
+            //TODO: a box is require to show question
+            Expanded(
+              child: Text('Question is here'),
+            ),
+            //TODO: a true button
+            Expanded(
+              child: FlatButton(
+                padding: EdgeInsets.all(0.0),
+                color: Colors.green,
+                child: Text('TRUE'),
+                onPressed: (){
+                  //DO on TRUE
+                },
+              ),
+            ),
+            //TODO: a false button
+            Expanded(
+              child: FlatButton(
+                child: Text('FALSE'),
+                onPressed: (){
+                  //DO on FALSE
+                },
+              ),
+            ),
 
           ],
         ),
