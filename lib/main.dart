@@ -1,6 +1,8 @@
+import 'package:QuizApp/question.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'question.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
@@ -65,7 +67,10 @@ class _QuizPageState extends State<QuizPage> {
   List<bool> answeres = [true, false, true];
   int questionNumber = 0;
 
+  Question q1 = Question(q:'This is Planet', a:true);
+
   void _nextQuestion(){
+    print(q1.questionText);
     setState(() {
         if(questionNumber  <  questions.length - 1){
           questionNumber = questionNumber + 1;
