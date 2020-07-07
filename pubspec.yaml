@@ -14,7 +14,9 @@ dependencies:
   flutter:
     sdk: flutter
   double_back_to_close_app: ^1.2.0
-  rflutter_alert: ^1.0.3
+  flutter_launcher_icons: ^0.7.4
+
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -30,10 +32,15 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
+  assets :
+    - assets/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 
 
+flutter_icons:
+  image_path: 'assets/questions.png'
+  android: true
+  ios: true
