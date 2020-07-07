@@ -25,43 +25,99 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+
+  List<Icon> _trackers = [
+    Icon(
+      Icons.check,
+      color: Colors.green,
+    ),
+    Icon(
+      Icons.close,
+      color: Colors.red,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text('QuizApp'),
       ),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            //TODO: a box is require to show question
-            Expanded(
-              child: Text('Question is here'),
-            ),
-            //TODO: a true button
-            Expanded(
-              child: FlatButton(
-                padding: EdgeInsets.all(0.0),
-                color: Colors.green,
-                child: Text('TRUE'),
-                onPressed: (){
-                  //DO on TRUE
-                },
-              ),
-            ),
-            //TODO: a false button
-            Expanded(
-              child: FlatButton(
-                child: Text('FALSE'),
-                onPressed: (){
-                  //DO on FALSE
-                },
-              ),
-            ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                //TODO: a box is require to show question
+                Expanded(
+                flex: 3,
+                  child: Container(
+                      color: Colors.white30,
+                      padding: EdgeInsets.all(10.0),
+                      alignment: Alignment.center,
+                      child: Text(
+                          'Are we Learning Flutter?',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0
+                          ),
+                      ),
+                  ),
+                ),
+                //TODO: a true button
+                Expanded(
+                  flex: 1,
+                  child: FlatButton(
+                    padding: EdgeInsets.all(0.0),
+                    textColor: Colors.white,
+                    color: Colors.lightGreen,
+                    child: Text('TRUE'),
+                    onPressed: (){
+                      //DO on TRUE
+                      setState(() {
+                        _trackers.add(
+                          Icon(
+                            Icons.check,
+                            color: Colors.green,
+                          ),
+                        );
+                      });
+                    },
+                  ),
+                ),
+                //TODO: a false button
+                Expanded(
+                  flex: 1,
+                  child: FlatButton(
+                    padding: EdgeInsets.all(0.0),
+                    color: Colors.redAccent,
+                    textColor: Colors.white,
+                    child: Text('FALSE'),
+                    onPressed: (){
+                      //DO on FALSE
+                      setState(() {
+                        _trackers.add(
+                          Icon(
+                            Icons.close,
+                            color: Colors.red,
+                          ),
+                        );
+                      });
 
-          ],
+                    },
+                  ),
+                ),
+                Row(
+                  children: _trackers,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
