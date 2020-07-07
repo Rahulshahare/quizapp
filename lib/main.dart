@@ -26,14 +26,21 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
 
-  List<Icon> _trackers = [];
+  List<Icon> scoorKeeper = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('QuizApp'),
+        backgroundColor: Colors.black,
+        title: Text('QuizApp',
+          style: TextStyle(
+            //fontSize: 20.0,
+            letterSpacing:1.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: SafeArea(
         child: Center(
@@ -68,12 +75,17 @@ class _QuizPageState extends State<QuizPage> {
                     child: FlatButton(
                       padding: EdgeInsets.all(0.0),
                       textColor: Colors.white,
-                      color: Colors.lightGreen,
-                      child: Text('TRUE'),
+                      color: Colors.white10,
+                      child: Text('TRUE',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          letterSpacing:2.0,
+                        ),
+                      ),
                       onPressed: (){
                         //DO on TRUE
                         setState(() {
-                          _trackers.add(
+                          scoorKeeper.add(
                             Icon(
                               Icons.check,
                               color: Colors.green,
@@ -91,13 +103,18 @@ class _QuizPageState extends State<QuizPage> {
                     padding: const EdgeInsets.fromLTRB(0, 2, 0, 4),
                     child: FlatButton(
                       padding: EdgeInsets.all(0.0),
-                      color: Colors.redAccent,
+                      color: Colors.white10,
                       textColor: Colors.white,
-                      child: Text('FALSE'),
+                      child: Text('FALSE',
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            letterSpacing:2.0,
+                        ),
+                      ),
                       onPressed: (){
                         //DO on FALSE
                         setState(() {
-                          _trackers.add(
+                          scoorKeeper.add(
                             Icon(
                               Icons.close,
                               color: Colors.red,
@@ -110,7 +127,7 @@ class _QuizPageState extends State<QuizPage> {
                   ),
                 ),
                 Row(
-                  children: _trackers,
+                  children: scoorKeeper,
                 ),
               ],
             ),
