@@ -57,20 +57,24 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
 
   List<Icon> scoorKeeper = [];
-
-  List<String> questions = [
-    'This is Planet Earth',
-    'We live above the sky',
-    'Its after #2019',
+  List<Question> questionBank = [
+    Question(q:'This is Planet Earth', a: true),
+    Question(q: 'We live in water',a: false),
+    Question(q: 'Its Flutter', a: true)
   ];
 
-  List<bool> answeres = [true, false, true];
+//  List<String> questions = [
+//    'This is Planet Earth',
+//    'We live above the sky',
+//    'Its after #2019',
+//  ];
+//
+//  List<bool> answeres = [true, false, true];
   int questionNumber = 0;
 
   Question q1 = Question(q:'This is Planet', a:true);
 
   void _nextQuestion(){
-    print(q1.questionText);
     setState(() {
         if(questionNumber  <  questions.length - 1){
           questionNumber = questionNumber + 1;
