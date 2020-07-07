@@ -33,6 +33,8 @@ class _QuizPageState extends State<QuizPage> {
       ),
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             //TODO: a box is require to show question
             Expanded(
