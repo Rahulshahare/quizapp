@@ -60,10 +60,11 @@ class _QuizPageState extends State<QuizPage> {
   List<Question> questionBank = [
     Question(q:'This is Planet Earth', a: true),
     Question(q: 'We live in water',a: false),
-    Question(q: 'Its Flutter', a: true)
+    Question(q: 'Its Flutter', a: true),
   ];
 
   int questionNumber = 0;
+  bool isFinish = false;
 
   Question q1 = Question(q:'This is Planet', a:true);
 
@@ -72,18 +73,22 @@ class _QuizPageState extends State<QuizPage> {
         if(questionNumber  <  questionBank.length - 1){
           questionNumber = questionNumber + 1;
         }else{
-          questionNumber = 0;
+          isFinish = true;
         }
     });
   }
 
   void _updateScoor(bool userAnswere){
+    if(isFinish){
+      return null;
+    }
     bool correctAnswere = questionBank[questionNumber].questionAnswere;
     setState(() {
       scoorKeeper.add(
         Icon(
           correctAnswere == userAnswere ? Icons.check : Icons.close,
           color: correctAnswere == userAnswere ? Colors.green : Colors.red,
+          size: 20.0,
         ),
       );
     });
