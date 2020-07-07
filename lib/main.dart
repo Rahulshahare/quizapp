@@ -130,7 +130,6 @@ class _QuizPageState extends State<QuizPage> {
                   //DO on TRUE
                   _updateScoor(true);
                   _nextQuestion();
-
                 },
               ),
             ),
