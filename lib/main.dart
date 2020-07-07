@@ -57,10 +57,12 @@ class _QuizPageState extends State<QuizPage> {
   List<Icon> scoorKeeper = [];
 
   List<String> questions = [
-    'This is question one and this is extented question text',
-    'This is question two',
-    'This is question three'
+    'This is Planet Earth',
+    'We live above the sky',
+    'Its after #2019',
   ];
+
+  List<bool> answeres = [true, false, true];
   int questionNumber = 0;
 
   void _nextQuestion(){
@@ -70,6 +72,18 @@ class _QuizPageState extends State<QuizPage> {
         }else{
           questionNumber = 0;
         }
+    });
+  }
+
+  void _updateScoor(bool userAnswere){
+    bool correctAnswere = answeres[questionNumber];
+    setState(() {
+      scoorKeeper.add(
+        Icon(
+          correctAnswere == userAnswere ? Icons.check : Icons.close,
+          color: correctAnswere == userAnswere ? Colors.green : Colors.red,
+        ),
+      );
     });
   }
 
@@ -114,15 +128,9 @@ class _QuizPageState extends State<QuizPage> {
                 ),
                 onPressed: (){
                   //DO on TRUE
+                  _updateScoor(true);
                   _nextQuestion();
-                  setState(() {
-                    scoorKeeper.add(
-                      Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ),
-                    );
-                  });
+
                 },
               ),
             ),
@@ -144,21 +152,14 @@ class _QuizPageState extends State<QuizPage> {
                 ),
                 onPressed: (){
                   //DO on FALSE
+                  _updateScoor(false);
                   _nextQuestion();
-                  setState(() {
-                    scoorKeeper.add(
-                      Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ),
-                    );
-                  });
-
                 },
               ),
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: scoorKeeper,
           ),
         ],
