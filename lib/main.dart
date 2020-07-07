@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(Quizzler());
@@ -29,7 +30,10 @@ class Quizzler extends StatelessWidget {
         ),
         body: DoubleBackToCloseApp(
           snackBar: const SnackBar(
-              content: Text('TAP AGAIN TO EXIT', textAlign: TextAlign.center,),
+              content: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('TAP AGAIN TO EXIT', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey),),
+              ),
           ),
           child: SafeArea(
             child: Padding(
@@ -51,6 +55,8 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
 
   List<Icon> scoorKeeper = [];
+
+  List<String> questions = [];
 
   @override
   Widget build(BuildContext context) {
