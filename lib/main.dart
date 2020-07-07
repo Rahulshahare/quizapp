@@ -2,6 +2,7 @@ import 'package:QuizApp/question.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'question.dart';
 import 'package:flutter/rendering.dart';
 
@@ -69,13 +70,16 @@ class _QuizPageState extends State<QuizPage> {
   Question q1 = Question(q:'This is Planet', a:true);
 
   void _nextQuestion(){
-    setState(() {
+
         if(questionNumber  <  questionBank.length - 1){
-          questionNumber = questionNumber + 1;
+          setState(() {
+            questionNumber = questionNumber + 1;
+          });
         }else{
           isFinish = true;
+          _showAlert();
         }
-    });
+
   }
 
   void _updateScoor(bool userAnswere){
@@ -92,6 +96,25 @@ class _QuizPageState extends State<QuizPage> {
         ),
       );
     });
+  }
+
+  void _showAlert(){
+    Alert(
+      context: context,
+      type: AlertType.error,
+      title: "That's the last #Question",
+      desc: "HOPE YOU LOVE IT.",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "LOVE IT",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () => Navigator.pop(context),
+          width: 120,
+        )
+      ],
+    ).show();
   }
 
   @override
