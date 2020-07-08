@@ -2,7 +2,7 @@ import 'package:QuizApp/question.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
-import 'question.dart';
+import 'quizbrain.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
@@ -57,12 +57,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
 
   List<Icon> scoorKeeper = [];
-//  List<Question> questionBank = [
-//    Question(q:'This is Planet Earth', a: true),
-//    Question(q: 'We live in water',a: false),
-//    Question(q: 'Its Flutter', a: true),
-//  ];
-
   int questionNumber = 0;
   bool isFinish = false;
 
@@ -75,21 +69,21 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _nextQuestion(){
-        if(questionNumber  <  questionBank.length - 1){
-          setState(() {
-            questionNumber = questionNumber + 1;
-          });
-        }else{
-          isFinish = true;
-          _showAlert();
-        }
+    if(questionNumber  <  QuizBrain().questionBank.length - 1){
+      setState(() {
+        questionNumber = questionNumber + 1;
+      });
+    }else{
+      isFinish = true;
+        _showAlert();
+      }
   }
 
   void _updateScoor(bool userAnswere){
     if(isFinish){
       return null;
     }
-    bool correctAnswere = questionBank[questionNumber].questionAnswere;
+    bool correctAnswere = QuizBrain().questionBank[questionNumber].questionAnswere;
     setState(() {
       scoorKeeper.add(
         Icon(
@@ -138,7 +132,7 @@ class _QuizPageState extends State<QuizPage> {
                           "LOVE IT",
                           style: TextStyle(color: Colors.white, letterSpacing: 2.0),
                         ),
-                        color: CupertinoColors.black,
+                        color: Colors.black,
                       ),
                     )
                   ],
@@ -167,7 +161,7 @@ class _QuizPageState extends State<QuizPage> {
                 padding: EdgeInsets.all(10.0),
                 alignment: Alignment.center,
                 child: Text(
-                    questionBank[questionNumber].questionText,
+                    QuizBrain().questionBank[questionNumber].questionText,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
