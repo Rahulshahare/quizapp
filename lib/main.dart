@@ -83,7 +83,7 @@ class _QuizPageState extends State<QuizPage> {
     if(isFinish){
       return null;
     }
-    bool correctAnswere = QuizBrain().questionBank[questionNumber].questionAnswere;
+    bool correctAnswere = QuizBrain().getAnswere(questionNumber);
     setState(() {
       scoorKeeper.add(
         Icon(
@@ -161,7 +161,7 @@ class _QuizPageState extends State<QuizPage> {
                 padding: EdgeInsets.all(10.0),
                 alignment: Alignment.center,
                 child: Text(
-                    QuizBrain().questionBank[questionNumber].questionText,
+                    QuizBrain().getQuestion(questionNumber),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,

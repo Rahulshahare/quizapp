@@ -7,4 +7,12 @@ class QuizBrain{
     Question(q: 'Its Flutter', a: true),
   ];
 
+  String getQuestion( int questionNumber){
+    return questionBank[questionNumber].questionText;
+  }
+
+  bool getAnswere( int questionNumber){
+    return questionBank[questionNumber].questionAnswere;
+  }
+
 }
